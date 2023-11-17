@@ -1,0 +1,27 @@
+footer {
+    height: 56px;
+    background: #f9fafb;
+    border-top: 1px solid $third-color;
+    @include flexCenter(row, space-between);
+    @include colour($primary-color, $third-color);
+
+    .footer-links {
+        a {
+            font-size: 14px;
+            padding: 10px 15px 10px 15px;
+            color: $third-color;
+
+            @include mobile-300 {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .copyright {
+        font-size: 14px;
+
+        @include mobile-300 {
+            font-size: 13px;
+        }
+    }
+}
