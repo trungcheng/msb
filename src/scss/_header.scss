@@ -1,6 +1,6 @@
 header {
     @include flexCenter(row, space-between);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     height: 72px;
     background-color: $primary-color;
     position: sticky;
@@ -39,6 +39,8 @@ header {
     }
 
     ul {
+        border: 0 !important;
+
         @include mobile-878 {
             position: fixed;
             @include spread(100%, 50vh);
@@ -47,73 +49,5 @@ header {
             z-index: 99;
             transition: 0.7s ease-in-out;
         }
-
-        li {
-            list-style: none;
-            display: inline-block;
-            padding: 0 10px;
-            font-size: 18px;
-
-            .menu {
-                @include mobile-878 {
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                }
-            }
-
-            a {
-                padding: 10px 20px 10px 20px;
-                border-radius: 20px;
-                transition: 0.7s;
-                font-size: 14px;
-
-                &:hover {
-                    @include colour($secondary-color, $primary-color);
-                }
-            }
-        }
-    }
-
-    .cart-icon {
-        position: relative;
-
-        @include mobile-500 {
-            top: -55px;
-            right: -30px;
-        }
-
-        span {
-            @include colour(#C20D0D, $secondary-color);
-            border-radius: 50%;
-            position: absolute;
-            bottom: 25px;
-            right: 6px;
-            font-weight: bold;
-            padding: 4px;
-            font-size: 12px;
-
-            @include mobile-500 {
-                bottom: -27px;
-                right: 27px;
-                padding: 3px;
-                z-index: 1;
-            }
-        }
-    }
-}
-
-.menu {
-    display: none;
-
-    @include mobile-878 {
-        display: block;
-        cursor: pointer;
-    }
-
-    @include mobile-500 {
-        position: absolute;
-        top: 20px;
-        right: 20px;
     }
 }

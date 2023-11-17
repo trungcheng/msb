@@ -11,7 +11,7 @@ export default function Home() {
     };
 
     return (
-        <section>
+        <section style={{padding: 0}}>
             <div className="landing-box">
                 <img src="images/slide1.png" alt="landing-pic" />
             </div>
