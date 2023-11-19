@@ -1,52 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { PhoneOutlined, DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Button, Dropdown, Space, Avatar } from 'antd';
+import { Context } from "../store";
 import { Link } from "react-router-dom";
-import { PhoneOutlined } from '@ant-design/icons';
-import { Menu, Button } from 'antd';
 
-const getItem = (label, key, icon, children, type) => {
+const getItem = (label, key, icon, children, onClick, type) => {
     return {
         key,
         icon,
         children,
         label,
         type,
+        onClick
     };
 }
 
-const items = [
-    getItem('Navigation Two', 'sub2', null, [
-        getItem('Option 5', '5'),
-        getItem('Option 6', '6'),
-        getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-    ]),
-    getItem('Navigation Three', 'sub4', null, [
-        getItem('Option 9', '9'),
-        getItem('Option 10', '10'),
-        getItem('Option 11', '11'),
-        getItem('Option 12', '12'),
-    ]),
-];
-
 const Header = (props) => {
-    const [menu, setMenu] = useState(false);
+    const value = useContext(Context);
+    
+    const items = [
+        getItem('Sản phẩm', 'product', null, [
+            getItem('Thẻ tín dụng', 'visa', null, [
+                getItem('MSB Mastercard mDigi', 'visa1'), 
+                getItem('MSB Mastercard Super Free', 'visa2'),
+                getItem('MSB Visa Online', 'visa3'),
+                getItem('MSB Visa Travel', 'visa4'),
+                getItem('MSB Visa Signature', 'visa5'),
+            ]),
+            getItem('Vay', 'lending'),
+            getItem('Bảo hiểm', 'insurance'),
+        ]),
+        getItem('So sánh', 'compare', null, [
+            getItem('Option 9', '9'),
+            getItem('Option 10', '10'),
+            getItem('Option 11', '11'),
+            getItem('Option 12', '12'),
+        ]),
+        getItem('Câu hỏi thường gặp', 'question', null)
+    ];
 
-    const toggleMenu = () => {
-        setMenu(!menu);
+    if (!value.isLoggedIn) {
+        items.push(getItem('Đăng nhập', 'login', null, null, () => {
+            props.onLogin();
+        }));
     }
 
-    const styles = {
-        largeIcon: {
-            width: 28,
-            height: 28
+    items.push(getItem('1900 6083', 'hotline', <PhoneOutlined />));
+
+    const dropDownItems = [
+        {
+            key: '1',
+            label: (
+                <Link to="/profile">Quản lý tài khoản</Link>
+            )
         },
-        styleMenu: {
-            top: menu ? 0 : "-100%",
-            backgroundColor: "#ffffff"
-        },
-        telFontSize: {
-            width: '16px'
+        {
+            key: '2',
+            label: (
+                <a onClick={() => props.onLogout()}>Đăng xuất</a>
+            )
         }
-    };
+    ];
 
     return (
         <header>
@@ -55,34 +69,24 @@ const Header = (props) => {
             </div>
 
             <Menu
-                style={
-                    {
-                        width: '100%', 
-                        justifyContent: 'end'
-                    }
-                }
+                style={{ width: '100%', justifyContent: 'end' }}
                 mode="horizontal"
                 items={items}
             />
 
-            <Button>Yêu cầu tư vấn</Button>
+            <Button style={{ border: '1px solid #F4600C', color: '#F4600C' }}>Yêu cầu tư vấn</Button>
 
-            {/* <ul style={styles.styleMenu}>
-                <li><Link to="#">Sản phẩm</Link></li>
-                <li><Link to="#">So sánh</Link></li>
-                <li><Link to="#">Câu hỏi thường gặp</Link></li>
-                <li><Link to="#">Đăng nhập</Link></li>
-                <li><Link to="#"><img src="images/icon-tel.png" style={styles.telFontSize} /> 1900 6083</Link></li>
-                <li><button>Yêu cầu tư vấn</button></li>
-                <li onClick={toggleMenu}>
-                    <img src="cross.png" alt="close-menu" width="30" className="menu" />
-                </li>
-            </ul>
-
-            <div className="menu" onClick={toggleMenu}>
-                <img src="menu.svg" alt="menu" width="30" />
-            </div> */}
-
+            {value.isLoggedIn && 
+                <Dropdown menu={{ items: dropDownItems }}>
+                    <a onClick={(e) => e.preventDefault()} style={{ marginLeft: 20, borderLeft: '1px solid #98A2B3' }}>
+                        <Space style={{ width: 115, fontSize: 14, marginLeft: 20 }}>
+                            <Avatar size="small" icon={<UserOutlined />} />
+                            kminchelle
+                            <DownOutlined style={{ width: '10px', paddingTop: '5px' }} />
+                        </Space>
+                    </a>
+                </Dropdown>
+            }
         </header>
     )
 }

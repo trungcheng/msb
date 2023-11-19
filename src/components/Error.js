@@ -6,9 +6,9 @@ const Error = () => {
     return (
         <section>
             <div className="error-main">
-                <p> Oops! Page Not found. </p>
-                <h1> 404 </h1>
-                <Link to="/"> Go Back Home </Link>
+                <p>Oops! Không tìm thấy trang.</p>
+                <h1>404</h1>
+                <Link to="/">Trở về trang chủ</Link>
             </div>
         </section>
     );
