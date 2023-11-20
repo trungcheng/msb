@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from "../store";
 import { Carousel, Card, Row, Col, Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 
 const Home = () => {
+    const value = useContext(Context);
+
     return (
         <section style={{padding: '0 0 20px 0'}}>
             <div className="landing-box">
@@ -53,94 +56,28 @@ const Home = () => {
                 </div>
                 <div className="container" style={{ marginTop: 190 }}>
                     <h3 className="text-center" style={{ fontSize: 24 }}>Danh sách sản phẩm</h3>
-                    <div style={{ margin: '40px 0 80px' }}>
-                        <Row gutter={[20, 40]}>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product1.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Thẻ tín dụng</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Đa dạng lựa chọn theo phong cách chi tiêu</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
+                    {value.products.length && 
+                        <div style={{ margin: '40px 0 80px' }}>
+                            <Row gutter={[20, 40]}>
+                                {value.products.map(product => 
+                                    <Col span={8} style={{ display: 'flex' }} key={product.id}>
+                                        <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
+                                            <a href="#">
+                                                <img src={product.image} style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
+                                                <div style={{ padding: '0 15px' }}>
+                                                    <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>{product.title}</p>
+                                                    <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>{product.desc}</p>
+                                                    <p style={{ padding: '0 0 25px 0' }}>
+                                                        <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
+                                                    </p>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product2.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Vay linh hoạt</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Giải ngân tức thì, tiêu dùng linh hoạt</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product3.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Mua trước trả sau</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Chuyển đổi trả góp, nhẹ ví chi tiêu</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product4.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Tiền nhanh</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Nhận khoản vay dự phòng, chủ động và nhanh chóng</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product5.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Tài khoản thanh toán M-Pro</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Siêu miễn phí, hoàn tiền tới 3,6 triệu đồng</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex' }}>
-                                <div style={{ boxShadow: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)', borderRadius: 20 }}>
-                                    <a href="#">
-                                        <img src="images/product6.png" style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }} />
-                                        <div style={{ padding: '0 15px' }}>
-                                            <p style={{ fontSize: 18, fontWeight: 'bold', padding: '20px 0 10px 0' }}>Bảo hiểm</p>
-                                            <p style={{ fontSize: 16, padding: '0 0 20px 0' }}>Mua bảo hiểm trực tuyến dễ dàng chỉ với vài thao tác</p>
-                                            <p style={{ padding: '0 0 25px 0' }}>
-                                                <a href="#" style={{ fontSize: 14, color: '#F4600C' }}>Khám phá ngay <ArrowRightOutlined style={{ padding: '2px 0 0 10px' }} /></a>
-                                            </p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </Col>
-                        </Row>
-                    </div>
+                                    </Col>
+                                )}
+                            </Row>
+                        </div>
+                    }
                 </div>
             </div>
         </section>

@@ -6,28 +6,15 @@ export const Context = createContext();
 export const Provider = (props) => {
     const [products, setProducts] = useState([]);
 
+    useEffect(() => {
+        fetch('http://localhost:3001/products')
+            .then(res => res.json())
+            .then(data => setProducts(data));
+    }, []);
+
     const isLoggedIn = () => {
         return getToken() ? true : false;
     };
-
-    const getData = () => {
-        fetch('data.json', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (myJson) {
-            setProducts(myJson);
-        });
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
 
     const value = {
         products: products,

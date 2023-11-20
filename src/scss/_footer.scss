@@ -1,9 +1,8 @@
 footer {
     height: 56px;
-    background: #f9fafb;
-    border-top: 1px solid $third-color;
+    border-top: 1px solid #EAECF0;
     @include flexCenter(row, space-between);
-    @include colour($primary-color, $third-color);
+    @include colour(#f9fafb, $third-color);
 
     .footer-links {
         a {

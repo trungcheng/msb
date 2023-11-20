@@ -1,0 +1,40 @@
+{
+    "products": [
+        { 
+            "id": 1, 
+            "title": "Thẻ tín dụng", 
+            "desc": "Đa dạng lựa chọn theo phong cách chi tiêu", 
+            "image": "images/product1.png" 
+        },
+        { 
+            "id": 2, 
+            "title": "Vay linh hoạt", 
+            "desc": "Giải ngân tức thì, tiêu dùng linh hoạt", 
+            "image": "images/product2.png" 
+        },
+        { 
+            "id": 3, 
+            "title": "Mua trước trả sau", 
+            "desc": "Chuyển đổi trả góp, nhẹ ví chi tiêu", 
+            "image": "images/product3.png" 
+        },
+        { 
+            "id": 4, 
+            "title": "Tiền nhanh", 
+            "desc": "Nhận khoản vay dự phòng, chủ động và nhanh chóng", 
+            "image": "images/product4.png" 
+        },
+        { 
+            "id": 5, 
+            "title": "Tài khoản thanh toán M-Pro", 
+            "desc": "Siêu miễn phí, hoàn tiền tới 3,6 triệu đồng", 
+            "image": "images/product5.png" 
+        },
+        { 
+            "id": 6, 
+            "title": "Bảo hiểm", 
+            "desc": "Mua bảo hiểm trực tuyến dễ dàng chỉ với vài thao tác", 
+            "image": "images/product6.png" 
+        }
+    ]
+}

@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import { Redirect, Switch, Route, useHistory } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import { Provider } from "./store";
-import Register from "./components/Signup/Register";
 import Error from "./components/Error";
 import { Modal, Button, Form, Input } from 'antd';
 import { setToken, removeToken, getToken } from "./utils";
@@ -73,22 +72,23 @@ function App() {
   const onLogout = () => {
     removeToken();
     history.push('/');
-    location.reload();
+    setTimeout(() => {
+      location.reload();
+  }, 1000);
   }
   
   return (
     <Provider>
       <>
         <Switch>
-          <Route exact path="/error404" component={Error} />
+          <Route exact path="/page-not-found" component={Error} />
           <Route>
             <Header onLogin={onLogin} onLogout={onLogout} />
 
             <Switch>
               <Route exact path="/" component={Home} />
               {getToken() && <Route exact path="/profile" component={Profile} />}
-              <Route exact path="/register" component={Register} />
-              <Redirect to="/error404" />
+              <Redirect to="/page-not-found" />
             </Switch>
 
             <Footer />
