@@ -26,7 +26,24 @@ module.exports = {
                 },
             },
             {
+                test: /\.module\.s(a|c)ss$/,
+                use: [
+                    //'style-loader', // include style tag to head html section, for development
+                    MiniCssExtractPlugin.loader, // for production
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                outputStyle: 'compressed'
+                            }
+                        }
+                    }
+                ],
+            },
+            {
                 test: /\.(s(a|c)ss)$/,
+                exclude: /\.module.(s(a|c)ss)$/,
                 use: [
                     //'style-loader', // include style tag to head html section, for development
                     MiniCssExtractPlugin.loader, // for production
